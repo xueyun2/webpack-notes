@@ -1,0 +1,468 @@
+@use "./theme" as *;
+@use "./unit" as *;
+@use "sass:math";
+$projection: 0 remPx(4, $isRem, $unit) remPx(10, $isRem, $unit) rgba(0, 0, 0, 0.1);
+/* 改变滚动条的宽度 */
+::-webkit-scrollbar {
+    width: remPx(4, $isRem, $unit);
+    height: remPx(4, $isRem, $unit);
+}
+/* 改变滚动条凹槽的颜色 */
+::-webkit-scrollbar-track-piece {
+    background-color: $white-color;
+}
+/* 改变滚动条滑块的样式 */
+::-webkit-scrollbar-thumb {
+    background-color: $border-color;
+    background-clip: padding-box;
+    min-height: remPx(28, $isRem, $unit);
+}
+/* iphoneX适配底部 */
+@supports (bottom: env(safe-area-inset-bottom)) {
+    body,
+    .iphoneX {
+        padding-bottom: constant(safe-area-inset-bottom);
+        padding-bottom: env(safe-area-inset-bottom);
+    }
+}
+/* placeholder 设置字体颜色 */
+::-webkit-input-placeholder {
+    /* WebKit browsers */
+    color: $font-neglect;
+    font-size: remPx(14, $isRem, $unit);
+}
+
+::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    color: $font-neglect;
+    font-size: remPx(14, $isRem, $unit);
+}
+
+:-ms-input-placeholder {
+    /* Internet Explorer 10+ */
+    color: $font-neglect;
+    font-size: remPx(14, $isRem, $unit);
+}
+/* 输入框样式 */
+input {
+    -webkit-appearance: none;
+    appearance: none;
+    &[type="button"],
+    &[type="submit"],
+    &[type="file"]{
+        cursor: pointer;
+
+        background: none;
+        border-radius: 0;
+    }
+
+    &[type="text"],
+    &[type="number"],
+    &[type="password"] {
+        width: 100%;
+        height: remPx(44, $isRem, $unit);
+        border: remPx(1, false, px) solid $border-color;
+        border-radius: remPx(4, $isRem, $unit);
+        line-height: remPx(44, $isRem, $unit);
+        background: $white-color;
+        outline: none;
+        padding: remPx(10, $isRem, $unit);
+        box-sizing: border-box;
+        transition: all 0.5s;
+        outline: none;
+        font-size: remPx(16, $isRem, $unit);
+    }
+    &[type="text"]:focus,
+    &[type="number"]:focus,
+    &[type="password"]:focus {
+        border-color: $primary-color;
+    }
+    //复选框
+    &[type="checkbox"] {
+        display: inline-block;
+        width: remPx(18, $isRem, $unit);
+        height: remPx(18, $isRem, $unit);
+        cursor: pointer;
+        outline: none;
+        vertical-align: middle;
+        border: 1px solid $border-color;
+        box-sizing: border-box;
+        padding: 0;
+        transition: all 0.5s;
+        margin: 0;
+    }
+    &[type="checkbox"]:checked {
+        border: 1px solid $primary-color;
+        background: $primary-color;
+    }
+    &[type="checkbox"]:checked::before {
+        content: "";
+        display: block;
+        position: relative;
+        width: remPx(4, $isRem, $unit);
+        height: remPx(7, $isRem, $unit);
+        left: 22%;
+        top: 48%;
+        border-right: remPx(2, $isRem, $unit) solid $white-color;
+        border-bottom: remPx(2, $isRem, $unit) solid $white-color;
+        transform: rotate(45deg) translate(-50%, -50%);
+        background: none;
+        transition: all 0.5s;
+    }
+
+    /* 单选按钮 */
+    &[type="radio"] {
+        display: inline-block;
+        width: remPx(18, $isRem, $unit);
+        height: remPx(18, $isRem, $unit);
+        cursor: pointer;
+        outline: none;
+        vertical-align: middle;
+        border: 1 + $unit solid $border-color;
+        box-sizing: border-box;
+        padding: 0;
+        transition: all 0.5s;
+        border-radius: 1000 + $unit;
+        margin: 0;
+    }
+    &[type="radio"]:checked {
+        border: 1px solid $primary-color;
+        background: $white-color;
+        border-radius: remPx(1000, $isRem, $unit);
+        margin: 0;
+    }
+    &[type="radio"]:checked::before {
+        content: "";
+        display: block;
+        position: relative;
+        width: remPx(10, $isRem, $unit);
+        height: remPx(10, $isRem, $unit);
+        left: 50%;
+        top: 50%;
+        border-radius: remPx(1000, $isRem, $unit);
+        background: $primary-color;
+        transform: translate(-50%, -50%);
+        transition: all 0.5s;
+    }
+}
+//文件上传input
+.file {
+    background: $bg-color;
+    width: remPx(80, $isRem, $unit);
+    height: remPx(80, $isRem, $unit);
+    border-radius: remPx(4, $isRem, $unit);
+    position: relative;
+    input {
+        opacity: 0;
+        position: absolute;
+        display: block;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        padding: 0;
+        margin: 0;
+    }
+    &::before {
+        content: "";
+        display: block;
+        position: absolute;
+        width: remPx(4, $isRem, $unit);
+        height: remPx(40, $isRem, $unit);
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        background: none;
+        transition: all 0.5s;
+        background: $font-neglect;
+        border-radius: remPx(4, $isRem, $unit);
+    }
+    &::after {
+        content: "";
+        display: block;
+        position: absolute;
+        width: remPx(40, $isRem, $unit);
+        height: remPx(4, $isRem, $unit);
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        background: none;
+        transition: all 0.5s;
+        background: $font-neglect;
+        border-radius: remPx(4, $isRem, $unit);
+    }
+}
+// 按钮
+.button.button {
+    -webkit-appearance: none;
+    appearance: none;
+    border: none;
+    box-shadow: none;
+    cursor: pointer;
+    width: 100%;
+    background: $primary-color;
+    color: $white-color;
+    border-radius: remPx(4, $isRem, $unit) !important;
+    padding: remPx(12, $isRem, $unit);
+    display: block;
+    font-size: remPx(16, $isRem, $unit);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    -webkit-appearance: none;
+    border-radius: 0;
+    position: relative;
+    &:after {
+        content: "";
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        background-image: radial-gradient(circle, darken($primary-color, 10%) 10%, transparent 10.01%);
+        background-repeat: no-repeat;
+        background-position: 50%;
+        transform: scale(10, 10);
+        opacity: 0;
+        transition: transform 0.3s, opacity 0.5s;
+    }
+    &:active:after {
+        transform: scale(0, 0);
+        opacity: 0.3;
+        transition: 0s;
+    }
+}
+.button.disabled {
+    background: $bg-color !important;
+    color: $font-minor !important;
+    border: 1px solid $border-color !important;
+    pointer-events: none;
+}
+//中等按钮
+.medium.button {
+    padding: remPx(8, $isRem, $unit);
+    font-size: remPx(14, $isRem, $unit);
+}
+//小按钮
+.mini.button {
+    padding: remPx(5, $isRem, $unit);
+    font-size: remPx(12, $isRem, $unit);
+}
+//不重要按钮
+.info.button {
+    background: $bg-color;
+    color: $font-minor;
+}
+/* 步进器 */
+.Stepper {
+    input {
+        width: remPx(40, $isRem, $unit);
+        height: remPx(28, $isRem, $unit);
+        line-height: remPx(28, $isRem, $unit);
+        border: none;
+        background: #f3f4f6;
+        border-radius: remPx(4, $isRem, $unit);
+        text-align: center;
+        color: $font-main;
+        -webkit-appearance: none;
+        padding: 0;
+    }
+    .but {
+        width: remPx(40, $isRem, $unit);
+        height: remPx(28, $isRem, $unit);
+        color: $icon-color;
+        border: none;
+        background: $bg-color;
+        border-radius: remPx(4, $isRem, $unit);
+        text-align: center;
+        font-size: remPx(12, $isRem, $unit);
+        font-weight: normal;
+        cursor: pointer;
+        user-select: none;
+    }
+}
+//日历
+.calendar {
+    position: relative;
+    z-index: 88;
+    & &-icon {
+        font-size: remPx(20, $isRem, $unit);
+    }
+    & &-item {
+        width:  math.div(1, 7);
+        height: remPx(40, $isRem, $unit);
+        cursor: pointer;
+    }
+    & &-card {
+        width: 100%;
+        box-shadow: #{$projection};
+        border-radius: remPx(4, $isRem, $unit);
+        position: absolute;
+        background: $white-color;
+    }
+    & &-block {
+        display: inline-block;
+        padding: remPx(4, $isRem, $unit) remPx(10, $isRem, $unit);
+        border-radius: remPx(4, $isRem, $unit);
+    }
+    & &-active &-block {
+        color: $white-color;
+        background: $primary-color;
+    }
+    & &-select {
+        height: remPx(44, $isRem, $unit);
+        position: relative;
+    }
+    & &-select &-icon {
+        position: absolute;
+        right: remPx(10, $isRem, $unit);
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: remPx(20, $isRem, $unit);
+        color: $icon-color;
+        transition: all 0.5s;
+    }
+    & &-select input[type="text"] {
+        padding-right: remPx(18, $isRem, $unit);
+    }
+}
+
+//下拉选项组件
+.dropDown {
+    position: relative;
+    & &-select {
+        height: remPx(44, $isRem, $unit);
+        position: relative;
+    }
+    & &-select &-icon {
+        position: absolute;
+        right: remPx(10, $isRem, $unit);
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: remPx(20, $isRem, $unit);
+        color: $icon-color;
+        transition: all 0.5s;
+    }
+    & &-select input[type="text"] {
+        padding-right: remPx(36, $isRem, $unit);
+    }
+    & &-card {
+        width: 100%;
+        border-radius: remPx(4, $isRem, $unit);
+        background: $white-color;
+        box-shadow: #{$projection};
+        position: absolute;
+        top: remPx(44, $isRem, $unit);
+        left: 0;
+        max-height: remPx(400, $isRem, $unit);
+        overflow-y: auto;
+        overflow-x: hidden;
+        box-sizing: border-box;
+    }
+
+    & &-item {
+        cursor: pointer;
+    }
+    & &-item:hover {
+        color: $primary-color;
+    }
+    & &-select &-icon-active {
+        transform: rotate(180deg) translate(0, 50%);
+    }
+    & &-item-active {
+        color: $primary-color;
+    }
+}
+
+// 标签
+.tag {
+    background: $primary-color-light;
+    border: 1px solid $primary-color;
+    color: $primary-color;
+    border-radius: 1000 + $unit;
+    display: inline-block;
+    padding: remPx(2, $isRem, $unit) remPx(6, $isRem, $unit);
+}
+//评分
+.score {
+    img {
+        display: block;
+        width: 1.125rem;
+        height: 1.125rem;
+    }
+}
+//分页
+.page {
+    .page-upper {
+        // width: remPx(60, $isRem, $unit);
+        height: remPx(30, $isRem, $unit);
+        line-height: remPx(30, $isRem, $unit);
+        text-align: center;
+        border: 1px solid $border-color;
+        border-radius: remPx(4, $isRem, $unit);
+    }
+    .page-item {
+        border: 1px solid $border-color;
+        height: remPx(30, $isRem, $unit);
+        line-height: remPx(30, $isRem, $unit);
+        border-radius: remPx(4, $isRem, $unit);
+        background: $white-color;
+    }
+    .active {
+        color: $white-color !important;
+        background: $primary-color;
+        border-color: $primary-color;
+    }
+}
+//文本域名
+.textarea {
+    width: 100%;
+    border: 1px solid $border-color;
+    -webkit-appearance: none;
+    appearance: none;
+    outline: none;
+    resize: none;
+    min-height: remPx(150, $isRem, $unit);
+    box-sizing: border-box;
+    font-size: remPx(16, $isRem, $unit);
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: remPx(24, $isRem, $unit);
+    border-radius: remPx(4, $isRem, $unit);
+    padding:remPx(4, $isRem, $unit);
+    transition: all 0.4s;
+    &:focus {
+        border-color: $primary-color;
+    }
+}
+//空状态
+.empty {
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    img{
+        max-width: 100%;
+    }
+}
+//评分
+.score{
+    width:remPx(90, $isRem, $unit);
+    height: remPx(18, $isRem, $unit);
+    background: url('~@/assets/img/score.png') no-repeat;
+    background-size: remPx(90, $isRem, $unit) remPx(36, $isRem, $unit);
+    position: relative;
+    .score-active{
+        width: 100%;
+        height: remPx(18, $isRem, $unit);
+        position: absolute;
+        background: url('~@/assets/img/score.png') no-repeat;
+        background-position-y: remPx(-18, $isRem, $unit);
+        background-size: remPx(90, $isRem, $unit) remPx(36, $isRem, $unit);
+        left: 0;
+        top: 0;
+    }
+}

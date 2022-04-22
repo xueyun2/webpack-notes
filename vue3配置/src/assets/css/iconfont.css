@@ -1,0 +1,89 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 2749375 */
+  src: url('~@/assets/font/iconfont.ttf') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-guanzhu:before {
+  content: "\e6c4";
+}
+
+.icon-bianji:before {
+  content: "\e69d";
+}
+
+.icon-shanchu:before {
+  content: "\e69c";
+}
+
+.icon-guanbi:before {
+  content: "\e696";
+}
+
+.icon-chengshi:before {
+  content: "\e68e";
+}
+
+.icon-search:before {
+  content: "\e689";
+}
+
+.icon-rili:before {
+  content: "\e685";
+}
+
+.icon-zuojiantou:before {
+  content: "\e688";
+}
+
+.icon-youjiantousuang:before {
+  content: "\e686";
+}
+
+.icon-zuojiantousuang:before {
+  content: "\e687";
+}
+
+.icon-zengjia:before {
+  content: "\e684";
+}
+
+.icon-aixin:before {
+  content: "\e67c";
+}
+
+.icon-jianhsao:before {
+  content: "\e67d";
+}
+
+.icon-caidan:before {
+  content: "\e67e";
+}
+
+.icon-youjiantou:before {
+  content: "\e67f";
+}
+
+.icon-dianzan:before {
+  content: "\e680";
+}
+
+.icon-xiajiantou:before {
+  content: "\e681";
+}
+
+.icon-dianping:before {
+  content: "\e682";
+}
+
+.icon-fenxiang:before {
+  content: "\e683";
+}
+

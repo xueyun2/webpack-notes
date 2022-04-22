@@ -1,0 +1,13 @@
+//单位
+$unit: rem; 
+//是否开启rem计算
+$isRem: true; 
+//填充-边距
+$marginSize: 8; 
+@function remPx($Size, $is, $units) {
+    @if $is == true {
+        @return $Size/20 + $units;
+    } @else {
+        @return $Size + $units;
+    }
+}
