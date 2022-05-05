@@ -1,0 +1,18 @@
+{
+    "presets": [
+        [
+            "@babel/preset-env",
+            {
+                /**
+                 * userBuiltIns值
+                 * 1、false 不对当前JS处理填充
+                 * 2、usage 依据用户源代码当中使用到的新语法进行填充
+                 * 3、entry 依据我们当前筛选出来的浏览器决定填充什么
+                 */
+                "useBuiltIns": "usage",
+                //默认版本为2，设置使用3版本
+                "corejs": 3
+            }
+        ]
+    ]
+} 
