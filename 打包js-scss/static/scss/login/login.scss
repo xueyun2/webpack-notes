@@ -1,0 +1,7 @@
+// 引入主题颜色
+@import "../theme.scss";
+.login{
+    width: 300px;
+    height: 400px;
+    background: $primary-color;
+}

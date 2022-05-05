@@ -1,0 +1,53 @@
+
+//主色
+.primary-color {
+    background: $primary-color;
+}
+.primary-color-light{
+    background: $primary-color-light;
+}
+.warning-color{
+    background: $warning-color;
+}
+.warning-color-light{
+    background: $warning-color-light;
+}
+.error-color{
+    background: $error-color;
+}
+.white-color{
+    background: $white-color;
+}
+//背景
+.bg-color{
+    background:$bg-color;
+}
+//文字
+.font-main{
+    color: $font-main;
+}
+.font-minor{
+    color: $font-minor;
+}
+.font-neglect{
+    color: $font-neglect;
+}
+.font-error{
+    color: $error-color;
+}
+.font-primary{
+    color: $primary-color;
+}
+.font-warning{
+    color: $warning-color;
+}
+.font-white{
+    color: $white-color;
+}
+//图标
+.icon-color-active{
+    color: $primary-color;
+};
+.icon-color{
+    color:$font-neglect;
+}
